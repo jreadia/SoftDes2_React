@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
+import CustomHeader from './components/CustomHeader';
+import CustomFooter from './components/CustomFooter';
 
 const styles = StyleSheet.create({
   appContainer: {
@@ -16,7 +18,7 @@ const styles = StyleSheet.create({
     // ILO 1: LIMIT THE SIZE OF THE GOAL LIST CONTAINER FOR DEMO
     height: 200, // Limit height for scroll demonstration
     paddingHorizontal: 16,
-    // flex: 5, // Commented out to use fixed height
+    flex: 5, // Commented out to use fixed height
   },
 });
 
@@ -38,6 +40,8 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+      {/* Custom header component */}
+      <CustomHeader title="Adia Custom Goal App" />
       <GoalInput
         goalInputHandler={goalInputHandler}
         addGoalHandler={addGoalHandler}
@@ -48,26 +52,26 @@ export default function App() {
           To demonstrate the difference, comment/uncomment the following blocks:
           Use FlatList (efficient for large lists):
         */}
-        
-        {/* <FlatList
+        {/*
+        <FlatList
           data={courseGoals}
           renderItem={(itemData) => (
             <GoalItem text={itemData.item.text} />
           )}
-        /> */}
-
+        />
+        */}
         {/*
           Or use ScrollView (renders all children at once, not efficient for large lists):
           Uncomment below to test ScrollView:
-          */}
-
+        */}
         <ScrollView>
           {courseGoals.map((goal) => (
             <GoalItem key={goal.key} text={goal.text} />
           ))}
         </ScrollView>
-      
       </View>
+      {/* Custom footer component */}
+      <CustomFooter text="Adia HOA 11.1" />
     </View>
   );
 }
